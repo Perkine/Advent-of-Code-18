@@ -11,9 +11,11 @@ function runSquares(checkOverlap) {
     square.overlap = false;
     for(var y=square.y; y<square.y+square.h; y++) {
       for(var x=square.x; x<square.x+square.w; x++) {
-        !checkOverlap
-          && fabric[(1000 * y) + x]++
-          || (square.overlap |= fabric[(1000 * y) + x] > 1);
+        if(checkOverlap) {
+          fabric[(1000 * y) + x]++;
+        } else {
+          square.overlap |= fabric[(1000 * y) + x] > 1;
+        }
       }
     }
     if(checkOverlap && !square.overlap){
